@@ -1,5 +1,6 @@
 namespace Katas.TicTacToe.V2;
 
+//TODO: All classes must have state
 public static class Positions
 {
     public static readonly Position Position00 = new(0, 0);

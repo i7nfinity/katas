@@ -5,24 +5,30 @@ namespace Katas.Tests.TicTacToe.V2;
 [TestOf(typeof(Board))]
 public class BoardShould
 {
-    [TestCase(MarkKind.X, ExpectedResult = true)]
-    [TestCase(MarkKind.O, ExpectedResult = true)]
-    public bool AllowSettingFreePosition(MarkKind kind)
+    [Test(ExpectedResult = ValidatePositionResult.Success)]
+    public ValidatePositionResult AllowSettingFreePosition()
     {
         var board = new Board();
 
-        return board.TrySetPosition(Positions.Position00, kind);
+        return board.ValidatePosition(Positions.Position00);
     }
 
-    [TestCase(MarkKind.X, ExpectedResult = false)]
-    [TestCase(MarkKind.O, ExpectedResult = false)]
-    public bool DisallowSettingBusyPosition(MarkKind kind)
+    [Test(ExpectedResult = ValidatePositionResult.Busy)]
+    public ValidatePositionResult DisallowSettingBusyPosition()
     {
         var board = new Board();
 
-        board.TrySetPosition(Positions.Position00, kind);
+        board.SetStep(Positions.Position00, MarkKind.X);
 
-        return board.TrySetPosition(Positions.Position00, kind);
+        return board.ValidatePosition(Positions.Position00);
+    }
+
+    [Test(ExpectedResult = ValidatePositionResult.Invalid)]
+    public ValidatePositionResult DisallowSettingInvalidPosition()
+    {
+        var board = new Board();
+
+        return board.ValidatePosition(new Position(int.MaxValue, int.MaxValue));
     }
 
     [TestCase(MarkKind.X, 0, ExpectedResult = true)]
@@ -35,7 +41,7 @@ public class BoardShould
 
         foreach (Position position in PositionSets.WinDiagonals[line])
         {
-            board.TrySetPosition(position, kind);
+            board.SetStep(position, kind);
         }
 
         return board.IsBusyAtLeastOneWinPositionsInLine(kind);
@@ -53,7 +59,7 @@ public class BoardShould
 
         foreach (Position position in PositionSets.WinHorizontals[line])
         {
-            board.TrySetPosition(position, kind);
+            board.SetStep(position, kind);
         }
 
         return board.IsBusyAtLeastOneWinPositionsInLine(kind);
@@ -71,7 +77,7 @@ public class BoardShould
 
         foreach (Position position in PositionSets.WinVerticals[line])
         {
-            board.TrySetPosition(position, kind);
+            board.SetStep(position, kind);
         }
 
         return board.IsBusyAtLeastOneWinPositionsInLine(kind);
@@ -92,7 +98,7 @@ public class BoardShould
 
         foreach (Position position in PositionSets.AllPositions)
         {
-            board.TrySetPosition(position, kind);
+            board.SetStep(position, kind);
         }
 
         return board.IsBusyAllPositions();

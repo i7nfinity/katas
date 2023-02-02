@@ -9,27 +9,34 @@ public class GameShould
     public StepResultKind DefineXAlwaysGoesFirst()
     {
         var game = new Game();
-        var position = new Position(0, 0);
 
-        return game.MakeStep(position, MarkKind.X);
+        return game.TryMakeStep(Positions.Position00, MarkKind.X);
     }
 
-    [Test(ExpectedResult = StepResultKind.Denied)]
+    [Test(ExpectedResult = StepResultKind.InvalidOrder)]
     public StepResultKind DefineONeverGoesFirst()
     {
         var game = new Game();
-        Position position = Positions.Position00;
 
-        return game.MakeStep(position, MarkKind.O);
+        return game.TryMakeStep(Positions.Position00, MarkKind.O);
     }
 
-    [Test(ExpectedResult = StepResultKind.Denied)]
+    [Test(ExpectedResult = StepResultKind.InvalidOrder)]
+    public StepResultKind DefineXNeverGoesInsteadO()
+    {
+        var game = new Game();
+
+        game.TryMakeStep(Positions.Position00, MarkKind.X);
+
+        return game.TryMakeStep(Positions.Position01, MarkKind.X);
+    }
+
+    [Test(ExpectedResult = StepResultKind.InvalidOrder)]
     public StepResultKind DenyMakingStepsForEmpty()
     {
         var game = new Game();
-        Position position = Positions.Position00;
 
-        return game.MakeStep(position, MarkKind.Empty);
+        return game.TryMakeStep(Positions.Position00, MarkKind.Empty);
     }
 
     [Test(ExpectedResult = StepResultKind.Accessed)]
@@ -39,8 +46,8 @@ public class GameShould
         Position position1 = Positions.Position00;
         Position position2 = Positions.Position01;
 
-        game.MakeStep(position1, MarkKind.X);
-        StepResultKind result = game.MakeStep(position2, MarkKind.O);
+        game.TryMakeStep(position1, MarkKind.X);
+        StepResultKind result = game.TryMakeStep(position2, MarkKind.O);
 
         return result;
     }
@@ -53,24 +60,33 @@ public class GameShould
         Position position2 = Positions.Position01;
         Position position3 = Positions.Position02;
 
-        game.MakeStep(position1, MarkKind.X);
-        game.MakeStep(position2, MarkKind.O);
-        StepResultKind result = game.MakeStep(position3, MarkKind.X);
+        game.TryMakeStep(position1, MarkKind.X);
+        game.TryMakeStep(position2, MarkKind.O);
+        StepResultKind result = game.TryMakeStep(position3, MarkKind.X);
 
         return result;
     }
 
-    [Test(ExpectedResult = StepResultKind.Denied)]
+    [Test(ExpectedResult = StepResultKind.BusyPosition)]
     public StepResultKind DenyMakeStepOnPlayedPosition()
     {
         var game = new Game();
         Position position1 = Positions.Position00;
         Position position2 = Positions.Position00;
 
-        game.MakeStep(position1, MarkKind.X);
-        StepResultKind result = game.MakeStep(position2, MarkKind.O);
+        game.TryMakeStep(position1, MarkKind.X);
+        StepResultKind result = game.TryMakeStep(position2, MarkKind.O);
 
         return result;
+    }
+
+    [Test(ExpectedResult = StepResultKind.InvalidPosition)]
+    public StepResultKind DenyMakeStepWithInvalidPosition()
+    {
+        var game = new Game();
+        var invalidPosition = new Position(int.MaxValue, int.MaxValue);
+
+        return game.TryMakeStep(invalidPosition, MarkKind.X);
     }
 
     [Test(ExpectedResult = StepResultKind.Won)]
@@ -78,11 +94,11 @@ public class GameShould
     {
         var game = new Game();
 
-        game.MakeStep(Positions.Position00, MarkKind.X);
-        game.MakeStep(Positions.Position01, MarkKind.O);
-        game.MakeStep(Positions.Position11, MarkKind.X);
-        game.MakeStep(Positions.Position12, MarkKind.O);
-        StepResultKind result = game.MakeStep(Positions.Position22, MarkKind.X);
+        game.TryMakeStep(Positions.Position00, MarkKind.X);
+        game.TryMakeStep(Positions.Position01, MarkKind.O);
+        game.TryMakeStep(Positions.Position11, MarkKind.X);
+        game.TryMakeStep(Positions.Position12, MarkKind.O);
+        StepResultKind result = game.TryMakeStep(Positions.Position22, MarkKind.X);
 
         return result;
     }
@@ -92,12 +108,12 @@ public class GameShould
     {
         var game = new Game();
 
-        game.MakeStep(Positions.Position00, MarkKind.X);
-        game.MakeStep(Positions.Position02, MarkKind.O);
-        game.MakeStep(Positions.Position10, MarkKind.X);
-        game.MakeStep(Positions.Position11, MarkKind.O);
-        game.MakeStep(Positions.Position21, MarkKind.X);
-        StepResultKind result = game.MakeStep(Positions.Position20, MarkKind.O);
+        game.TryMakeStep(Positions.Position00, MarkKind.X);
+        game.TryMakeStep(Positions.Position02, MarkKind.O);
+        game.TryMakeStep(Positions.Position10, MarkKind.X);
+        game.TryMakeStep(Positions.Position11, MarkKind.O);
+        game.TryMakeStep(Positions.Position21, MarkKind.X);
+        StepResultKind result = game.TryMakeStep(Positions.Position20, MarkKind.O);
 
         return result;
     }
@@ -107,11 +123,11 @@ public class GameShould
     {
         var game = new Game();
 
-        game.MakeStep(Positions.Position20, MarkKind.X);
-        game.MakeStep(Positions.Position01, MarkKind.O);
-        game.MakeStep(Positions.Position21, MarkKind.X);
-        game.MakeStep(Positions.Position12, MarkKind.O);
-        StepResultKind result = game.MakeStep(Positions.Position22, MarkKind.X);
+        game.TryMakeStep(Positions.Position20, MarkKind.X);
+        game.TryMakeStep(Positions.Position01, MarkKind.O);
+        game.TryMakeStep(Positions.Position21, MarkKind.X);
+        game.TryMakeStep(Positions.Position12, MarkKind.O);
+        StepResultKind result = game.TryMakeStep(Positions.Position22, MarkKind.X);
 
         return result;
     }
@@ -121,11 +137,11 @@ public class GameShould
     {
         var game = new Game();
 
-        game.MakeStep(Positions.Position10, MarkKind.X);
-        game.MakeStep(Positions.Position01, MarkKind.O);
-        game.MakeStep(Positions.Position11, MarkKind.X);
-        game.MakeStep(Positions.Position22, MarkKind.O);
-        StepResultKind result = game.MakeStep(Positions.Position12, MarkKind.X);
+        game.TryMakeStep(Positions.Position10, MarkKind.X);
+        game.TryMakeStep(Positions.Position01, MarkKind.O);
+        game.TryMakeStep(Positions.Position11, MarkKind.X);
+        game.TryMakeStep(Positions.Position22, MarkKind.O);
+        StepResultKind result = game.TryMakeStep(Positions.Position12, MarkKind.X);
 
         return result;
     }
@@ -135,15 +151,15 @@ public class GameShould
     {
         var game = new Game();
 
-        game.MakeStep(Positions.Position01, MarkKind.X);
-        game.MakeStep(Positions.Position00, MarkKind.O);
-        game.MakeStep(Positions.Position02, MarkKind.X);
-        game.MakeStep(Positions.Position11, MarkKind.O);
-        game.MakeStep(Positions.Position10, MarkKind.X);
-        game.MakeStep(Positions.Position12, MarkKind.O);
-        game.MakeStep(Positions.Position21, MarkKind.X);
-        game.MakeStep(Positions.Position20, MarkKind.O);
-        StepResultKind result = game.MakeStep(Positions.Position22, MarkKind.X);
+        game.TryMakeStep(Positions.Position01, MarkKind.X);
+        game.TryMakeStep(Positions.Position00, MarkKind.O);
+        game.TryMakeStep(Positions.Position02, MarkKind.X);
+        game.TryMakeStep(Positions.Position11, MarkKind.O);
+        game.TryMakeStep(Positions.Position10, MarkKind.X);
+        game.TryMakeStep(Positions.Position12, MarkKind.O);
+        game.TryMakeStep(Positions.Position21, MarkKind.X);
+        game.TryMakeStep(Positions.Position20, MarkKind.O);
+        StepResultKind result = game.TryMakeStep(Positions.Position22, MarkKind.X);
 
         return result;
     }

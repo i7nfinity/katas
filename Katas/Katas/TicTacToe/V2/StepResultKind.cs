@@ -3,7 +3,9 @@ namespace Katas.TicTacToe.V2;
 public enum StepResultKind
 {
     Accessed,
-    Denied,
+    InvalidPosition,
+    BusyPosition,
+    InvalidOrder,
     Won,
     Draw
 }

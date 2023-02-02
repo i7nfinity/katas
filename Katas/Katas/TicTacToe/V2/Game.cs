@@ -1,27 +1,31 @@
 namespace Katas.TicTacToe.V2;
 
-public class Game
+public sealed class Game
 {
     private readonly Board _board = new();
     private int _stepCount = 1;
 
-    public StepResultKind MakeStep(Position position, MarkKind mark)
+    //TODO: Keep all entities small: 5 lines per method
+    public StepResultKind TryMakeStep(Position position, MarkKind mark)
     {
-        if (mark == MarkKind.Empty)
+        if (IsInvalidOrder(mark))
         {
-            return StepResultKind.Denied;
+            return StepResultKind.InvalidOrder;
         }
 
-        if ((_stepCount % 2 == 1 && mark == MarkKind.O) ||
-            (_stepCount % 2 == 0 && mark == MarkKind.X))
+        ValidatePositionResult validatePositionResult = _board.ValidatePosition(position);
+        switch (validatePositionResult)
         {
-            return StepResultKind.Denied;
+            case ValidatePositionResult.Busy:
+                return StepResultKind.BusyPosition;
+            case ValidatePositionResult.Invalid:
+                return StepResultKind.InvalidPosition;
+            case ValidatePositionResult.Success:
+            default:
+                break;
         }
 
-        if (!_board.TrySetPosition(position, mark))
-        {
-            return StepResultKind.Denied;
-        }
+        _board.SetStep(position, mark);
 
         if (_board.IsBusyAllPositions())
         {
@@ -35,5 +39,11 @@ public class Game
 
         _stepCount++;
         return StepResultKind.Accessed;
+    }
+
+    private bool IsInvalidOrder(MarkKind mark)
+    {
+        return mark == MarkKind.Empty || (_stepCount % 2 == 1 && mark == MarkKind.O)
+                                      || (_stepCount % 2 == 0 && mark == MarkKind.X);
     }
 }

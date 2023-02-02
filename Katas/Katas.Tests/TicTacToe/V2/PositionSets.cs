@@ -2,6 +2,7 @@ using Katas.TicTacToe.V2;
 
 namespace Katas.Tests.TicTacToe.V2;
 
+//TODO: All classes must have state
 internal static class PositionSets
 {
     public static readonly Position[] AllPositions =

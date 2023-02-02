@@ -1,6 +1,7 @@
 namespace Katas.TicTacToe.V2;
 
-public class Board
+//TODO: Keep all entities small: 50 lines per class
+public sealed class Board
 {
     private readonly Dictionary<Position, MarkKind> _board = new()
     {
@@ -15,6 +16,7 @@ public class Board
         {Positions.Position22, MarkKind.Empty}
     };
 
+    //TODO: First class collections (wrap collections in classes)
     private readonly Position[][] _winPositionsLines =
     {
         //diagonals
@@ -32,23 +34,28 @@ public class Board
         new[] {Positions.Position02, Positions.Position12, Positions.Position22}
     };
 
-    public bool TrySetPosition(Position position, MarkKind mark)
+    public void SetStep(Position position, MarkKind mark)
     {
-        //TODO: check position
-        if (_board[position] != MarkKind.Empty)
-        {
-            return false;
-        }
-
         _board[position] = mark;
-        return true;
     }
 
+    public ValidatePositionResult ValidatePosition(Position position)
+    {
+        if (!_board.ContainsKey(position))
+        {
+            return ValidatePositionResult.Invalid;
+        }
+
+        return _board[position] != MarkKind.Empty ? ValidatePositionResult.Busy : ValidatePositionResult.Success;
+    }
+
+    //TODO: Wrap all primitives and strings (wrap primitive types in classes)
     public bool IsBusyAllPositions()
     {
         return _board.Values.All(b => b != MarkKind.Empty);
     }
 
+    //TODO: Wrap all primitives and strings (wrap primitive types in classes)
     public bool IsBusyAtLeastOneWinPositionsInLine(MarkKind mark)
     {
         return _winPositionsLines.Any(line => IsBusyAllLine(line, mark));
