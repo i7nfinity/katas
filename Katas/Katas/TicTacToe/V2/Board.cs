@@ -2,11 +2,17 @@ namespace Katas.TicTacToe.V2;
 
 public class Board
 {
-    private readonly MarkKind[][] _board =
+    private readonly Dictionary<Position, MarkKind> _board = new()
     {
-        new[] {MarkKind.Empty, MarkKind.Empty, MarkKind.Empty},
-        new[] {MarkKind.Empty, MarkKind.Empty, MarkKind.Empty},
-        new[] {MarkKind.Empty, MarkKind.Empty, MarkKind.Empty}
+        {Positions.Position00, MarkKind.Empty},
+        {Positions.Position01, MarkKind.Empty},
+        {Positions.Position02, MarkKind.Empty},
+        {Positions.Position10, MarkKind.Empty},
+        {Positions.Position11, MarkKind.Empty},
+        {Positions.Position12, MarkKind.Empty},
+        {Positions.Position20, MarkKind.Empty},
+        {Positions.Position21, MarkKind.Empty},
+        {Positions.Position22, MarkKind.Empty}
     };
 
     private readonly Position[][] _winPositionsLines =
@@ -28,20 +34,19 @@ public class Board
 
     public bool TrySetPosition(Position position, MarkKind mark)
     {
-        var x = position.X;
-        var y = position.Y;
-        if (_board[x][y] != MarkKind.Empty)
+        //TODO: check position
+        if (_board[position] != MarkKind.Empty)
         {
             return false;
         }
 
-        _board[x][y] = mark;
+        _board[position] = mark;
         return true;
     }
 
     public bool IsBusyAllPositions()
     {
-        return _board.SelectMany(b => b).All(b => b != MarkKind.Empty);
+        return _board.Values.All(b => b != MarkKind.Empty);
     }
 
     public bool IsBusyAtLeastOneWinPositionsInLine(MarkKind mark)
@@ -51,6 +56,6 @@ public class Board
 
     private bool IsBusyAllLine(IEnumerable<Position> line, MarkKind mark)
     {
-        return line.All(position => _board[position.X][position.Y] == mark);
+        return line.All(position => _board[position] == mark);
     }
 }

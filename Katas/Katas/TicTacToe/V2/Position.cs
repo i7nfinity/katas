@@ -2,18 +2,18 @@ namespace Katas.TicTacToe.V2;
 
 public readonly struct Position : IEquatable<Position>
 {
-    public int X { get; }
-    public int Y { get; }
+    private readonly int _x;
+    private readonly int _y;
 
     public Position(int x, int y)
     {
-        X = x;
-        Y = y;
+        _x = x;
+        _y = y;
     }
 
     public bool Equals(Position other)
     {
-        return X == other.X && Y == other.Y;
+        return _x == other._x && _y == other._y;
     }
 
     public override bool Equals(object? obj)
@@ -23,7 +23,7 @@ public readonly struct Position : IEquatable<Position>
 
     public override int GetHashCode()
     {
-        return HashCode.Combine(X, Y);
+        return HashCode.Combine(_x, _y);
     }
 
     public static bool operator ==(Position left, Position right)
