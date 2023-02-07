@@ -12,7 +12,7 @@ public class BoardShould
         var points = new HashSet<Point> {new(2, 2)};
         var board = new Board(points);
 
-        HashSet<Point> actual = board.GetPopulatedPointsAfterTick();
+        ISet<Point> actual = board.GetPopulatedPointsAfterTick();
 
         Assert.That(actual, Is.Empty);
     }
@@ -30,8 +30,48 @@ public class BoardShould
         var points = new HashSet<Point> {new(2, 2), new(x, y)};
         var board = new Board(points);
 
-        HashSet<Point> actual = board.GetPopulatedPointsAfterTick();
+        ISet<Point> actual = board.GetPopulatedPointsAfterTick();
 
         Assert.That(actual, Is.Empty);
+    }
+
+    [Test]
+    public void DefineCellLivesWithTwoLiveNeighbors()
+    {
+        var points = new HashSet<Point> {new(2, 2), new(2, 1), new(2, 3)};
+        var board = new Board(points);
+
+        ISet<Point> actual = board.GetPopulatedPointsAfterTick();
+
+        Assert.That(actual, Contains.Item(new Point(2, 2)));
+    }
+
+    [Test]
+    public void DefineCellLivesWithThreeLiveNeighbors()
+    {
+        var points = new HashSet<Point> {new(2, 1), new(2, 2), new(2, 3), new(1, 2)};
+        var board = new Board(points);
+
+        ISet<Point> actual = board.GetPopulatedPointsAfterTick();
+
+        Assert.That(actual, Contains.Item(new Point(2, 2)));
+    }
+
+    [Test]
+    public void DefineCellDiesWithFourLiveNeighbors()
+    {
+        var points = new HashSet<Point>
+        {
+            new(2, 1),
+            new(2, 2),
+            new(2, 3),
+            new(1, 2),
+            new(3, 1)
+        };
+        var board = new Board(points);
+
+        ISet<Point> actual = board.GetPopulatedPointsAfterTick();
+
+        Assert.That(actual, Does.Not.Contains(new Point(2, 2)));
     }
 }
