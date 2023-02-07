@@ -1,4 +1,4 @@
-﻿namespace Katas.TicTacToe;
+﻿namespace Katas.TicTacToe.V1;
 
 /// <summary>
 ///     Tic Tac Toe rules

@@ -1,4 +1,4 @@
-using Katas.TicTacToe;
+using Katas.TicTacToe.V1;
 
 namespace Katas.Tests.TicTacToe.V1;
 
