@@ -15,22 +15,7 @@ namespace Tennis
             var score = "";
             if (IsSamePointsLessThanThree())
             {
-                if (_firstPlayerPoint == 0)
-                {
-                    score = "Love";
-                }
-
-                if (_firstPlayerPoint == 1)
-                {
-                    score = "Fifteen";
-                }
-
-                if (_firstPlayerPoint == 2)
-                {
-                    score = "Thirty";
-                }
-
-                return score + "-All";
+                return GetScoreForSamePointsLessThanThree(score);
             }
             if (IsSamePointsGreaterThanTwo())
             {
@@ -146,6 +131,26 @@ namespace Tennis
                 score = "Win for player2";
             }
             return score;
+        }
+
+        private string GetScoreForSamePointsLessThanThree(string score)
+        {
+            if (_firstPlayerPoint == 0)
+            {
+                score = "Love";
+            }
+
+            if (_firstPlayerPoint == 1)
+            {
+                score = "Fifteen";
+            }
+
+            if (_firstPlayerPoint == 2)
+            {
+                score = "Thirty";
+            }
+
+            return score + "-All";
         }
 
         private bool IsSecondPointGreaterThanOrEqualToFourAndFirstPointGreaterThanOrEqualToZeroAndTheirDifferenceGreaterThanTwo()
