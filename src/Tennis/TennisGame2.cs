@@ -13,7 +13,7 @@ namespace Tennis
         public string GetScore()
         {
             var score = "";
-            if (_firstPlayerPoint == _secondPlayerPoint && _firstPlayerPoint < 3)
+            if (IsSamePointsLessThanThree())
             {
                 if (_firstPlayerPoint == 0)
                 {
@@ -32,12 +32,12 @@ namespace Tennis
 
                 score += "-All";
             }
-            if (_firstPlayerPoint == _secondPlayerPoint && _firstPlayerPoint > 2)
+            if (IsSamePointsGreaterThanTwo())
             {
                 score = "Deuce";
             }
 
-            if (_firstPlayerPoint > 0 && _secondPlayerPoint == 0)
+            if (IsFirstPointGreaterThanZeroAndSecondPointEqualsZero())
             {
                 if (_firstPlayerPoint == 1)
                 {
@@ -57,7 +57,7 @@ namespace Tennis
                 p2res = "Love";
                 score = p1res + "-" + p2res;
             }
-            if (_secondPlayerPoint > 0 && _firstPlayerPoint == 0)
+            if (IsSecondPointGreaterThanZeroAndFirstPointEqualsZero())
             {
                 if (_secondPlayerPoint == 1)
                 {
@@ -78,7 +78,7 @@ namespace Tennis
                 score = p1res + "-" + p2res;
             }
 
-            if (_firstPlayerPoint > _secondPlayerPoint && _firstPlayerPoint < 4)
+            if (IsFirstPointLessThanFourAndGreaterThanSecondPoint())
             {
                 if (_firstPlayerPoint == 2)
                 {
@@ -102,7 +102,7 @@ namespace Tennis
 
                 score = p1res + "-" + p2res;
             }
-            if (_secondPlayerPoint > _firstPlayerPoint && _secondPlayerPoint < 4)
+            if (IsSecondPointLessThanFourAndGreaterThanFirstPoint())
             {
                 if (_secondPlayerPoint == 2)
                 {
@@ -127,25 +127,75 @@ namespace Tennis
                 score = p1res + "-" + p2res;
             }
 
-            if (_firstPlayerPoint > _secondPlayerPoint && _secondPlayerPoint >= 3)
+            if (IsSecondPointGreaterThanOrEqualToThreeAndLessThanFirstPoint())
             {
                 score = "Advantage player1";
             }
 
-            if (_secondPlayerPoint > _firstPlayerPoint && _firstPlayerPoint >= 3)
+            if (IsFirstPointGreaterThanOrEqualToThreeAndLessThanSecondPoint())
             {
                 score = "Advantage player2";
             }
 
-            if (_firstPlayerPoint >= 4 && _secondPlayerPoint >= 0 && (_firstPlayerPoint - _secondPlayerPoint) >= 2)
+            if (IsFirstPointGreaterThanOrEqualToFourAndSecondPointGreaterThanOrEqualToZeroAndTheirDifferenceGreaterThanTwo())
             {
                 score = "Win for player1";
             }
-            if (_secondPlayerPoint >= 4 && _firstPlayerPoint >= 0 && (_secondPlayerPoint - _firstPlayerPoint) >= 2)
+            if (IsSecondPointGreaterThanOrEqualToFourAndFirstPointGreaterThanOrEqualToZeroAndTheirDifferenceGreaterThanTwo())
             {
                 score = "Win for player2";
             }
             return score;
+        }
+
+        private bool IsSecondPointGreaterThanOrEqualToFourAndFirstPointGreaterThanOrEqualToZeroAndTheirDifferenceGreaterThanTwo()
+        {
+            return _secondPlayerPoint >= 4 && _firstPlayerPoint >= 0 && (_secondPlayerPoint - _firstPlayerPoint) >= 2;
+        }
+
+        private bool IsFirstPointGreaterThanOrEqualToFourAndSecondPointGreaterThanOrEqualToZeroAndTheirDifferenceGreaterThanTwo()
+        {
+            return _firstPlayerPoint >= 4 && _secondPlayerPoint >= 0 && (_firstPlayerPoint - _secondPlayerPoint) >= 2;
+        }
+
+        private bool IsFirstPointGreaterThanOrEqualToThreeAndLessThanSecondPoint()
+        {
+            return _secondPlayerPoint > _firstPlayerPoint && _firstPlayerPoint >= 3;
+        }
+
+        private bool IsSecondPointGreaterThanOrEqualToThreeAndLessThanFirstPoint()
+        {
+            return _firstPlayerPoint > _secondPlayerPoint && _secondPlayerPoint >= 3;
+        }
+
+        private bool IsSecondPointLessThanFourAndGreaterThanFirstPoint()
+        {
+            return _secondPlayerPoint > _firstPlayerPoint && _secondPlayerPoint < 4;
+        }
+
+        private bool IsFirstPointLessThanFourAndGreaterThanSecondPoint()
+        {
+            return _firstPlayerPoint > _secondPlayerPoint && _firstPlayerPoint < 4;
+        }
+
+        private bool IsSecondPointGreaterThanZeroAndFirstPointEqualsZero()
+        {
+            return _secondPlayerPoint > 0 && _firstPlayerPoint == 0;
+        }
+
+        private bool IsFirstPointGreaterThanZeroAndSecondPointEqualsZero()
+        {
+            return _firstPlayerPoint > 0 && _secondPlayerPoint == 0;
+        }
+
+        private bool IsSamePointsGreaterThanTwo()
+        {
+            return _firstPlayerPoint == _secondPlayerPoint && _firstPlayerPoint > 2;
+        }
+
+        private bool IsSamePointsLessThanThree()
+        {
+            return _firstPlayerPoint == _secondPlayerPoint && _firstPlayerPoint < 3;
         }
 
         public void SetP1Score(int number)
