@@ -30,7 +30,7 @@ namespace Tennis
                     score = "Thirty";
                 }
 
-                score += "-All";
+                return score + "-All";
             }
             if (IsSamePointsGreaterThanTwo())
             {
