@@ -10,11 +10,6 @@ namespace Tennis
         private string p1res = "";
         private string p2res = "";
 
-        public TennisGame2()
-        {
-            _firstPlayerPoint = 0;
-        }
-
         public string GetScore()
         {
             var score = "";
