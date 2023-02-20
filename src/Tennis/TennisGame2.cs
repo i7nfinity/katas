@@ -16,24 +16,43 @@ namespace Tennis
             if (_firstPlayerPoint == _secondPlayerPoint && _firstPlayerPoint < 3)
             {
                 if (_firstPlayerPoint == 0)
+                {
                     score = "Love";
+                }
+
                 if (_firstPlayerPoint == 1)
+                {
                     score = "Fifteen";
+                }
+
                 if (_firstPlayerPoint == 2)
+                {
                     score = "Thirty";
+                }
+
                 score += "-All";
             }
             if (_firstPlayerPoint == _secondPlayerPoint && _firstPlayerPoint > 2)
+            {
                 score = "Deuce";
+            }
 
             if (_firstPlayerPoint > 0 && _secondPlayerPoint == 0)
             {
                 if (_firstPlayerPoint == 1)
+                {
                     p1res = "Fifteen";
+                }
+
                 if (_firstPlayerPoint == 2)
+                {
                     p1res = "Thirty";
+                }
+
                 if (_firstPlayerPoint == 3)
+                {
                     p1res = "Forty";
+                }
 
                 p2res = "Love";
                 score = p1res + "-" + p2res;
@@ -41,11 +60,19 @@ namespace Tennis
             if (_secondPlayerPoint > 0 && _firstPlayerPoint == 0)
             {
                 if (_secondPlayerPoint == 1)
+                {
                     p2res = "Fifteen";
+                }
+
                 if (_secondPlayerPoint == 2)
+                {
                     p2res = "Thirty";
+                }
+
                 if (_secondPlayerPoint == 3)
+                {
                     p2res = "Forty";
+                }
 
                 p1res = "Love";
                 score = p1res + "-" + p2res;
@@ -54,25 +81,49 @@ namespace Tennis
             if (_firstPlayerPoint > _secondPlayerPoint && _firstPlayerPoint < 4)
             {
                 if (_firstPlayerPoint == 2)
+                {
                     p1res = "Thirty";
+                }
+
                 if (_firstPlayerPoint == 3)
+                {
                     p1res = "Forty";
+                }
+
                 if (_secondPlayerPoint == 1)
+                {
                     p2res = "Fifteen";
+                }
+
                 if (_secondPlayerPoint == 2)
+                {
                     p2res = "Thirty";
+                }
+
                 score = p1res + "-" + p2res;
             }
             if (_secondPlayerPoint > _firstPlayerPoint && _secondPlayerPoint < 4)
             {
                 if (_secondPlayerPoint == 2)
+                {
                     p2res = "Thirty";
+                }
+
                 if (_secondPlayerPoint == 3)
+                {
                     p2res = "Forty";
+                }
+
                 if (_firstPlayerPoint == 1)
+                {
                     p1res = "Fifteen";
+                }
+
                 if (_firstPlayerPoint == 2)
+                {
                     p1res = "Thirty";
+                }
+
                 score = p1res + "-" + p2res;
             }
 
@@ -126,9 +177,13 @@ namespace Tennis
         public void WonPoint(string player)
         {
             if (player == "player1")
+            {
                 P1Score();
+            }
             else
+            {
                 P2Score();
+            }
         }
 
     }
