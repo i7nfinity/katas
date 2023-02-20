@@ -135,20 +135,13 @@ namespace Tennis
 
         private string GetScoreForSamePointsLessThanThree(string score)
         {
-            if (_firstPlayerPoint == 0)
+            score = _firstPlayerPoint switch
             {
-                score = "Love";
-            }
-
-            if (_firstPlayerPoint == 1)
-            {
-                score = "Fifteen";
-            }
-
-            if (_firstPlayerPoint == 2)
-            {
-                score = "Thirty";
-            }
+                0 => "Love",
+                1 => "Fifteen",
+                2 => "Thirty",
+                _ => score
+            };
 
             return score + "-All";
         }
