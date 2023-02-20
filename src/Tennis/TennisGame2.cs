@@ -10,7 +10,7 @@ namespace Tennis
         private string p1res = "";
         private string p2res = "";
 
-        public TennisGame2(string player1Name, string player2Name)
+        public TennisGame2()
         {
             p1point = 0;
         }

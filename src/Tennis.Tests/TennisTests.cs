@@ -65,7 +65,7 @@ namespace Tennis.Tests
         [ClassData(typeof(TestDataGenerator))]
         public void Tennis2Test(int p1, int p2, string expected)
         {
-            var game = new TennisGame2("player1", "player2");
+            var game = new TennisGame2();
             CheckAllScores(game, p1, p2, expected);
         }
 
