@@ -19,7 +19,7 @@ namespace Tennis
             }
             if (IsSamePointsGreaterThanTwo())
             {
-                score = "Deuce";
+                return "Deuce";
             }
 
             if (IsFirstPointGreaterThanZeroAndSecondPointEqualsZero())
