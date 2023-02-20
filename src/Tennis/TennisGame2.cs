@@ -85,7 +85,7 @@ namespace Tennis
                     p2res = "Thirty";
                 }
 
-                score = p1res + "-" + p2res;
+                return p1res + "-" + p2res;
             }
             if (IsSecondPointLessThanFourAndGreaterThanFirstPoint())
             {
@@ -109,7 +109,7 @@ namespace Tennis
                     p1res = "Thirty";
                 }
 
-                score = p1res + "-" + p2res;
+                return p1res + "-" + p2res;
             }
 
             if (IsSecondPointGreaterThanOrEqualToThreeAndLessThanFirstPoint())
