@@ -124,11 +124,11 @@ namespace Tennis
 
             if (IsFirstPointGreaterThanOrEqualToFourAndSecondPointGreaterThanOrEqualToZeroAndTheirDifferenceGreaterThanTwo())
             {
-                score = "Win for player1";
+                return "Win for player1";
             }
             if (IsSecondPointGreaterThanOrEqualToFourAndFirstPointGreaterThanOrEqualToZeroAndTheirDifferenceGreaterThanTwo())
             {
-                score = "Win for player2";
+                return "Win for player2";
             }
             return score;
         }
