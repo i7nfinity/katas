@@ -28,19 +28,13 @@ namespace Tennis
             if (IsFirstPointGreaterThanZeroAndSecondPointEqualsZero() ||
                 IsSecondPointGreaterThanZeroAndFirstPointEqualsZero())
             {
-                p1res = GetScorePart(_firstPlayerPoint);
-                p2res = GetScorePart(_secondPlayerPoint);
-
-                score = p1res + "-" + p2res;
+                score = GetScorePart(_firstPlayerPoint) + "-" + GetScorePart(_secondPlayerPoint);
             }
 
             if (IsFirstPointLessThanFourAndGreaterThanSecondPoint() ||
                 IsSecondPointLessThanFourAndGreaterThanFirstPoint())
             {
-                p1res = GetScorePart(_firstPlayerPoint);
-                p2res = GetScorePart(_secondPlayerPoint);
-
-                return p1res + "-" + p2res;
+                return GetScorePart(_firstPlayerPoint) + "-" + GetScorePart(_secondPlayerPoint);
             }
 
             if (IsSecondPointGreaterThanOrEqualToThreeAndLessThanFirstPoint())
