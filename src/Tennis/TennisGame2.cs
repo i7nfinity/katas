@@ -28,15 +28,15 @@ namespace Tennis
             if (IsFirstPointGreaterThanZeroAndSecondPointEqualsZero())
             {
                 p1res = GetScorePart(_firstPlayerPoint);
+                p2res = GetScorePart(_secondPlayerPoint);
 
-                p2res = "Love";
                 score = p1res + "-" + p2res;
             }
             if (IsSecondPointGreaterThanZeroAndFirstPointEqualsZero())
             {
+                p1res = GetScorePart(_firstPlayerPoint);
                 p2res = GetScorePart(_secondPlayerPoint);
 
-                p1res = "Love";
                 score = p1res + "-" + p2res;
             }
 
