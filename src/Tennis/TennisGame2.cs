@@ -90,8 +90,7 @@ namespace Tennis
 
         private string GetScoreForSamePointsLessThanThree(string score)
         {
-            score = GetScorePart(_firstPlayerPoint);
-            return score + "-All";
+            return GetScorePart(_firstPlayerPoint) + "-All";
         }
 
         private bool IsSecondPointGreaterThanOrEqualToFourAndFirstPointGreaterThanOrEqualToZeroAndTheirDifferenceGreaterThanTwo()
