@@ -1,5 +1,8 @@
 // ReSharper disable ArrangeThisQualifier
 // ReSharper disable EnforceIfStatementBraces
+
+using System;
+
 namespace Tennis
 {
     public class TennisGame2 : ITennisGame
@@ -81,7 +84,7 @@ namespace Tennis
                 1 => "Fifteen",
                 2 => "Thirty",
                 3 => "Forty",
-                _ => defaultScorePart
+                _ => string.Empty
             };
         }
 
