@@ -18,7 +18,7 @@ namespace Tennis
             var score = "";
             if (IsSamePointsLessThanThree())
             {
-                return GetScoreForSamePointsLessThanThree(score);
+                return GetScoreForSamePointsLessThanThree();
             }
             if (IsSamePointsGreaterThanTwo())
             {
@@ -88,7 +88,7 @@ namespace Tennis
             };
         }
 
-        private string GetScoreForSamePointsLessThanThree(string score)
+        private string GetScoreForSamePointsLessThanThree()
         {
             return GetScorePart(_firstPlayerPoint) + "-All";
         }
