@@ -24,40 +24,26 @@ namespace Tennis
 
             if (IsFirstPointGreaterThanZeroAndSecondPointEqualsZero())
             {
-                if (_firstPlayerPoint == 1)
+                p1res = _firstPlayerPoint switch
                 {
-                    p1res = "Fifteen";
-                }
-
-                if (_firstPlayerPoint == 2)
-                {
-                    p1res = "Thirty";
-                }
-
-                if (_firstPlayerPoint == 3)
-                {
-                    p1res = "Forty";
-                }
+                    1 => "Fifteen",
+                    2 => "Thirty",
+                    3 => "Forty",
+                    _ => p1res
+                };
 
                 p2res = "Love";
                 score = p1res + "-" + p2res;
             }
             if (IsSecondPointGreaterThanZeroAndFirstPointEqualsZero())
             {
-                if (_secondPlayerPoint == 1)
+                p2res = _secondPlayerPoint switch
                 {
-                    p2res = "Fifteen";
-                }
-
-                if (_secondPlayerPoint == 2)
-                {
-                    p2res = "Thirty";
-                }
-
-                if (_secondPlayerPoint == 3)
-                {
-                    p2res = "Forty";
-                }
+                    1 => "Fifteen",
+                    2 => "Thirty",
+                    3 => "Forty",
+                    _ => p2res
+                };
 
                 p1res = "Love";
                 score = p1res + "-" + p2res;
@@ -65,49 +51,37 @@ namespace Tennis
 
             if (IsFirstPointLessThanFourAndGreaterThanSecondPoint())
             {
-                if (_firstPlayerPoint == 2)
+                p1res = _firstPlayerPoint switch
                 {
-                    p1res = "Thirty";
-                }
+                    2 => "Thirty",
+                    3 => "Forty",
+                    _ => p1res
+                };
 
-                if (_firstPlayerPoint == 3)
+                p2res = _secondPlayerPoint switch
                 {
-                    p1res = "Forty";
-                }
-
-                if (_secondPlayerPoint == 1)
-                {
-                    p2res = "Fifteen";
-                }
-
-                if (_secondPlayerPoint == 2)
-                {
-                    p2res = "Thirty";
-                }
+                    1 => "Fifteen",
+                    2 => "Thirty",
+                    _ => p2res
+                };
 
                 return p1res + "-" + p2res;
             }
             if (IsSecondPointLessThanFourAndGreaterThanFirstPoint())
             {
-                if (_secondPlayerPoint == 2)
+                p2res = _secondPlayerPoint switch
                 {
-                    p2res = "Thirty";
-                }
+                    2 => "Thirty",
+                    3 => "Forty",
+                    _ => p2res
+                };
 
-                if (_secondPlayerPoint == 3)
+                p1res = _firstPlayerPoint switch
                 {
-                    p2res = "Forty";
-                }
-
-                if (_firstPlayerPoint == 1)
-                {
-                    p1res = "Fifteen";
-                }
-
-                if (_firstPlayerPoint == 2)
-                {
-                    p1res = "Thirty";
-                }
+                    1 => "Fifteen",
+                    2 => "Thirty",
+                    _ => p1res
+                };
 
                 return p1res + "-" + p2res;
             }
