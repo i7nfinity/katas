@@ -37,12 +37,12 @@ namespace Tennis
                 return GetScorePart(_firstPlayerPoint) + "-" + GetScorePart(_secondPlayerPoint);
             }
 
-            if (IsSecondPointGreaterThanOrEqualToThreeAndLessThanFirstPoint())
+            if (IsAdvantageOnePointBeforeOther(_firstPlayerPoint, _secondPlayerPoint))
             {
                return "Advantage player1";
             }
 
-            if (IsFirstPointGreaterThanOrEqualToThreeAndLessThanSecondPoint())
+            if (IsAdvantageOnePointBeforeOther(_secondPlayerPoint, _firstPlayerPoint))
             {
                return "Advantage player2";
             }
@@ -85,15 +85,10 @@ namespace Tennis
         {
             return _firstPlayerPoint >= 4 && _secondPlayerPoint >= 0 && (_firstPlayerPoint - _secondPlayerPoint) >= 2;
         }
-
-        private bool IsFirstPointGreaterThanOrEqualToThreeAndLessThanSecondPoint()
+        
+        private static bool IsAdvantageOnePointBeforeOther(int onePoint, int otherPoint)
         {
-            return _secondPlayerPoint > _firstPlayerPoint && _firstPlayerPoint >= 3;
-        }
-
-        private bool IsSecondPointGreaterThanOrEqualToThreeAndLessThanFirstPoint()
-        {
-            return _firstPlayerPoint > _secondPlayerPoint && _secondPlayerPoint >= 3;
+            return onePoint > otherPoint && otherPoint >= 3;
         }
 
         private bool IsSamePointsGreaterThanTwo()
