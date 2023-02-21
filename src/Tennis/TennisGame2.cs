@@ -77,6 +77,7 @@ namespace Tennis
         {
             return playerPoint switch
             {
+                0 => "Love",
                 1 => "Fifteen",
                 2 => "Thirty",
                 3 => "Forty",
@@ -86,14 +87,7 @@ namespace Tennis
 
         private string GetScoreForSamePointsLessThanThree(string score)
         {
-            score = _firstPlayerPoint switch
-            {
-                0 => "Love",
-                1 => "Fifteen",
-                2 => "Thirty",
-                _ => score
-            };
-
+            score = GetScorePart(_firstPlayerPoint, score);
             return score + "-All";
         }
 
