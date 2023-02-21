@@ -10,9 +10,6 @@ namespace Tennis
         private int _firstPlayerPoint;
         private int _secondPlayerPoint;
 
-        private string p1res = "";
-        private string p2res = "";
-
         public string GetScore()
         {
             var score = "";
