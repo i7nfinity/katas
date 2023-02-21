@@ -29,10 +29,10 @@ namespace Tennis
                 return "Win for player2";
             }
 
-            if (IsFirstPointLessThanFourAndGreaterThanSecondPoint() ||
-                IsSecondPointLessThanFourAndGreaterThanFirstPoint() ||
-                IsFirstPointGreaterThanZeroAndSecondPointEqualsZero() ||
-                IsSecondPointGreaterThanZeroAndFirstPointEqualsZero())
+            if ((_firstPlayerPoint > _secondPlayerPoint && _firstPlayerPoint < 4) ||
+                (_secondPlayerPoint > _firstPlayerPoint && _secondPlayerPoint < 4) ||
+                (_firstPlayerPoint > 0 && _secondPlayerPoint == 0) ||
+                (_secondPlayerPoint > 0 && _firstPlayerPoint == 0))
             {
                 return GetScorePart(_firstPlayerPoint) + "-" + GetScorePart(_secondPlayerPoint);
             }
@@ -84,26 +84,6 @@ namespace Tennis
         private bool IsSecondPointGreaterThanOrEqualToThreeAndLessThanFirstPoint()
         {
             return _firstPlayerPoint > _secondPlayerPoint && _secondPlayerPoint >= 3;
-        }
-
-        private bool IsSecondPointLessThanFourAndGreaterThanFirstPoint()
-        {
-            return _secondPlayerPoint > _firstPlayerPoint && _secondPlayerPoint < 4;
-        }
-
-        private bool IsFirstPointLessThanFourAndGreaterThanSecondPoint()
-        {
-            return _firstPlayerPoint > _secondPlayerPoint && _firstPlayerPoint < 4;
-        }
-
-        private bool IsSecondPointGreaterThanZeroAndFirstPointEqualsZero()
-        {
-            return _secondPlayerPoint > 0 && _firstPlayerPoint == 0;
-        }
-
-        private bool IsFirstPointGreaterThanZeroAndSecondPointEqualsZero()
-        {
-            return _firstPlayerPoint > 0 && _secondPlayerPoint == 0;
         }
 
         private bool IsSamePointsGreaterThanTwo()
