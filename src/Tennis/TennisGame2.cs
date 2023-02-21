@@ -10,7 +10,6 @@ namespace Tennis
 
         public string GetScore()
         {
-            var score = "";
             if (IsSamePointsLessThanThree())
             {
                 return GetScoreForSamePointsLessThanThree();
@@ -18,12 +17,6 @@ namespace Tennis
             if (IsSamePointsGreaterThanTwo())
             {
                 return "Deuce";
-            }
-
-            if (IsFirstPointLessThanFourAndGreaterThanSecondPoint() ||
-                IsSecondPointLessThanFourAndGreaterThanFirstPoint())
-            {
-                return GetScorePart(_firstPlayerPoint) + "-" + GetScorePart(_secondPlayerPoint);
             }
 
             if (IsFirstPointGreaterThanOrEqualToFourAndSecondPointGreaterThanOrEqualToZeroAndTheirDifferenceGreaterThanTwo())
@@ -36,7 +29,9 @@ namespace Tennis
                 return "Win for player2";
             }
 
-            if (IsFirstPointGreaterThanZeroAndSecondPointEqualsZero() ||
+            if (IsFirstPointLessThanFourAndGreaterThanSecondPoint() ||
+                IsSecondPointLessThanFourAndGreaterThanFirstPoint() ||
+                IsFirstPointGreaterThanZeroAndSecondPointEqualsZero() ||
                 IsSecondPointGreaterThanZeroAndFirstPointEqualsZero())
             {
                 return GetScorePart(_firstPlayerPoint) + "-" + GetScorePart(_secondPlayerPoint);
@@ -51,7 +46,7 @@ namespace Tennis
             {
                return "Advantage player2";
             }
-            return score;
+            return "";
         }
 
         private static string GetScorePart(int playerPoint)
