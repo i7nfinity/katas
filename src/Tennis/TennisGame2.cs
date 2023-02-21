@@ -27,14 +27,14 @@ namespace Tennis
 
             if (IsFirstPointGreaterThanZeroAndSecondPointEqualsZero())
             {
-                p1res = GetScorePart(_firstPlayerPoint, p1res);
+                p1res = GetScorePart(_firstPlayerPoint);
 
                 p2res = "Love";
                 score = p1res + "-" + p2res;
             }
             if (IsSecondPointGreaterThanZeroAndFirstPointEqualsZero())
             {
-                p2res = GetScorePart(_secondPlayerPoint, p2res);
+                p2res = GetScorePart(_secondPlayerPoint);
 
                 p1res = "Love";
                 score = p1res + "-" + p2res;
@@ -42,15 +42,15 @@ namespace Tennis
 
             if (IsFirstPointLessThanFourAndGreaterThanSecondPoint())
             {
-                p1res = GetScorePart(_firstPlayerPoint, p1res);
-                p2res = GetScorePart(_secondPlayerPoint, p2res);
+                p1res = GetScorePart(_firstPlayerPoint);
+                p2res = GetScorePart(_secondPlayerPoint);
 
                 return p1res + "-" + p2res;
             }
             if (IsSecondPointLessThanFourAndGreaterThanFirstPoint())
             {
-                p2res = GetScorePart(_secondPlayerPoint, p2res);
-                p1res = GetScorePart(_firstPlayerPoint, p1res);
+                p2res = GetScorePart(_secondPlayerPoint);
+                p1res = GetScorePart(_firstPlayerPoint);
 
                 return p1res + "-" + p2res;
             }
@@ -76,7 +76,7 @@ namespace Tennis
             return score;
         }
 
-        private static string GetScorePart(int playerPoint, string defaultScorePart)
+        private static string GetScorePart(int playerPoint)
         {
             return playerPoint switch
             {
@@ -90,7 +90,7 @@ namespace Tennis
 
         private string GetScoreForSamePointsLessThanThree(string score)
         {
-            score = GetScorePart(_firstPlayerPoint, score);
+            score = GetScorePart(_firstPlayerPoint);
             return score + "-All";
         }
 
