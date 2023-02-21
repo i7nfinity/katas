@@ -31,13 +31,7 @@ namespace Tennis
             }
             if (IsSecondPointGreaterThanZeroAndFirstPointEqualsZero())
             {
-                p2res = _secondPlayerPoint switch
-                {
-                    1 => "Fifteen",
-                    2 => "Thirty",
-                    3 => "Forty",
-                    _ => p2res
-                };
+                p2res = GetScorePart(_secondPlayerPoint, p2res);
 
                 p1res = "Love";
                 score = p1res + "-" + p2res;
