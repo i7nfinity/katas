@@ -24,7 +24,7 @@ namespace Tennis
 
             if (IsFirstPointGreaterThanZeroAndSecondPointEqualsZero())
             {
-                p1res = GetScorePart();
+                p1res = GetScorePart(_firstPlayerPoint);
 
                 p2res = "Love";
                 score = p1res + "-" + p2res;
@@ -101,9 +101,9 @@ namespace Tennis
             return score;
         }
 
-        private string GetScorePart()
+        private string GetScorePart(int playerPoint)
         {
-            return _firstPlayerPoint switch
+            return playerPoint switch
             {
                 1 => "Fifteen",
                 2 => "Thirty",
