@@ -108,11 +108,10 @@ public class TennisGame2 : ITennisGame
         if (playerName == "player1")
         {
             P1Score();
+            return;
         }
-        else
-        {
-            P2Score();
-        }
+
+        P2Score();
     }
 
 }
