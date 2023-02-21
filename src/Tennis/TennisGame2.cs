@@ -25,14 +25,8 @@ namespace Tennis
                 return "Deuce";
             }
 
-            if (IsFirstPointGreaterThanZeroAndSecondPointEqualsZero())
-            {
-                p1res = GetScorePart(_firstPlayerPoint);
-                p2res = GetScorePart(_secondPlayerPoint);
-
-                score = p1res + "-" + p2res;
-            }
-            if (IsSecondPointGreaterThanZeroAndFirstPointEqualsZero())
+            if (IsFirstPointGreaterThanZeroAndSecondPointEqualsZero() ||
+                IsSecondPointGreaterThanZeroAndFirstPointEqualsZero())
             {
                 p1res = GetScorePart(_firstPlayerPoint);
                 p2res = GetScorePart(_secondPlayerPoint);
