@@ -39,37 +39,15 @@ namespace Tennis
 
             if (IsFirstPointLessThanFourAndGreaterThanSecondPoint())
             {
-                p1res = _firstPlayerPoint switch
-                {
-                    2 => "Thirty",
-                    3 => "Forty",
-                    _ => p1res
-                };
-
-                p2res = _secondPlayerPoint switch
-                {
-                    1 => "Fifteen",
-                    2 => "Thirty",
-                    _ => p2res
-                };
+                p1res = GetScorePart(_firstPlayerPoint, p1res);
+                p2res = GetScorePart(_secondPlayerPoint, p2res);
 
                 return p1res + "-" + p2res;
             }
             if (IsSecondPointLessThanFourAndGreaterThanFirstPoint())
             {
-                p2res = _secondPlayerPoint switch
-                {
-                    2 => "Thirty",
-                    3 => "Forty",
-                    _ => p2res
-                };
-
-                p1res = _firstPlayerPoint switch
-                {
-                    1 => "Fifteen",
-                    2 => "Thirty",
-                    _ => p1res
-                };
+                p2res = GetScorePart(_secondPlayerPoint, p2res);
+                p1res = GetScorePart(_firstPlayerPoint, p1res);
 
                 return p1res + "-" + p2res;
             }
