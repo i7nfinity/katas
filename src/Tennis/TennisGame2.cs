@@ -20,16 +20,26 @@ namespace Tennis
                 return "Deuce";
             }
 
-            if (IsFirstPointGreaterThanZeroAndSecondPointEqualsZero() ||
-                IsSecondPointGreaterThanZeroAndFirstPointEqualsZero())
-            {
-                score = GetScorePart(_firstPlayerPoint) + "-" + GetScorePart(_secondPlayerPoint);
-            }
-
             if (IsFirstPointLessThanFourAndGreaterThanSecondPoint() ||
                 IsSecondPointLessThanFourAndGreaterThanFirstPoint())
             {
                 return GetScorePart(_firstPlayerPoint) + "-" + GetScorePart(_secondPlayerPoint);
+            }
+
+            if (IsFirstPointGreaterThanOrEqualToFourAndSecondPointGreaterThanOrEqualToZeroAndTheirDifferenceGreaterThanTwo())
+            {
+                return "Win for player1";
+            }
+
+            if (IsSecondPointGreaterThanOrEqualToFourAndFirstPointGreaterThanOrEqualToZeroAndTheirDifferenceGreaterThanTwo())
+            {
+                return "Win for player2";
+            }
+
+            if (IsFirstPointGreaterThanZeroAndSecondPointEqualsZero() ||
+                IsSecondPointGreaterThanZeroAndFirstPointEqualsZero())
+            {
+                score = GetScorePart(_firstPlayerPoint) + "-" + GetScorePart(_secondPlayerPoint);
             }
 
             if (IsSecondPointGreaterThanOrEqualToThreeAndLessThanFirstPoint())
@@ -40,15 +50,6 @@ namespace Tennis
             if (IsFirstPointGreaterThanOrEqualToThreeAndLessThanSecondPoint())
             {
                 score = "Advantage player2";
-            }
-
-            if (IsFirstPointGreaterThanOrEqualToFourAndSecondPointGreaterThanOrEqualToZeroAndTheirDifferenceGreaterThanTwo())
-            {
-                return "Win for player1";
-            }
-            if (IsSecondPointGreaterThanOrEqualToFourAndFirstPointGreaterThanOrEqualToZeroAndTheirDifferenceGreaterThanTwo())
-            {
-                return "Win for player2";
             }
             return score;
         }
