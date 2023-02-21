@@ -40,14 +40,8 @@ namespace Tennis
                 score = p1res + "-" + p2res;
             }
 
-            if (IsFirstPointLessThanFourAndGreaterThanSecondPoint())
-            {
-                p1res = GetScorePart(_firstPlayerPoint);
-                p2res = GetScorePart(_secondPlayerPoint);
-
-                return p1res + "-" + p2res;
-            }
-            if (IsSecondPointLessThanFourAndGreaterThanFirstPoint())
+            if (IsFirstPointLessThanFourAndGreaterThanSecondPoint() ||
+                IsSecondPointLessThanFourAndGreaterThanFirstPoint())
             {
                 p1res = GetScorePart(_firstPlayerPoint);
                 p2res = GetScorePart(_secondPlayerPoint);
