@@ -126,9 +126,9 @@ namespace Tennis
             _secondPlayerPoint++;
         }
 
-        public void WonPoint(string player)
+        public void WonPoint(string playerName)
         {
-            if (player == "player1")
+            if (playerName == "player1")
             {
                 P1Score();
             }
