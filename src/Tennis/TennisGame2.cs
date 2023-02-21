@@ -29,8 +29,8 @@ namespace Tennis
                 return "Win for player2";
             }
 
-            if ((_firstPlayerPoint > _secondPlayerPoint && _firstPlayerPoint < 4) ||
-                (_secondPlayerPoint > _firstPlayerPoint && _secondPlayerPoint < 4) ||
+            if (IsOnePointLessThanFourAndGreaterThanOtherPoint(_firstPlayerPoint, _secondPlayerPoint) ||
+                IsOnePointLessThanFourAndGreaterThanOtherPoint(_secondPlayerPoint,_firstPlayerPoint) ||
                 IsOnePointGreaterThanZeroAndOtherPointEqualsZero(_firstPlayerPoint, _secondPlayerPoint) ||
                 IsOnePointGreaterThanZeroAndOtherPointEqualsZero(_secondPlayerPoint, _firstPlayerPoint))
             {
@@ -47,6 +47,11 @@ namespace Tennis
                return "Advantage player2";
             }
             return "";
+        }
+
+        private static bool IsOnePointLessThanFourAndGreaterThanOtherPoint(int onePoint, int otherPoint)
+        {
+            return onePoint > otherPoint && onePoint < 4;
         }
 
         private static bool IsOnePointGreaterThanZeroAndOtherPointEqualsZero(int onePoint, int otherPoint)
