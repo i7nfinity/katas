@@ -1,8 +1,6 @@
 // ReSharper disable ArrangeThisQualifier
 // ReSharper disable EnforceIfStatementBraces
 
-using System;
-
 namespace Tennis
 {
     public class TennisGame2 : ITennisGame
@@ -120,22 +118,6 @@ namespace Tennis
         private bool IsSamePointsLessThanThree()
         {
             return _firstPlayerPoint == _secondPlayerPoint && _firstPlayerPoint < 3;
-        }
-
-        public void SetP1Score(int number)
-        {
-            for (int i = 0; i < number; i++)
-            {
-                P1Score();
-            }
-        }
-
-        public void SetP2Score(int number)
-        {
-            for (var i = 0; i < number; i++)
-            {
-                P2Score();
-            }
         }
 
         private void P1Score()
