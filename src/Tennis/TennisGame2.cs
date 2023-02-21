@@ -19,12 +19,12 @@ namespace Tennis
                 return "Deuce";
             }
 
-            if (IsFirstPointGreaterThanOrEqualToFourAndSecondPointGreaterThanOrEqualToZeroAndTheirDifferenceGreaterThanTwo())
+            if (IsWinOnePoint(_firstPlayerPoint, _secondPlayerPoint))
             {
                 return "Win for player1";
             }
 
-            if (IsSecondPointGreaterThanOrEqualToFourAndFirstPointGreaterThanOrEqualToZeroAndTheirDifferenceGreaterThanTwo())
+            if (IsWinOnePoint(_secondPlayerPoint, _firstPlayerPoint))
             {
                 return "Win for player2";
             }
@@ -76,16 +76,11 @@ namespace Tennis
             return GetScorePart(_firstPlayerPoint) + "-All";
         }
 
-        private bool IsSecondPointGreaterThanOrEqualToFourAndFirstPointGreaterThanOrEqualToZeroAndTheirDifferenceGreaterThanTwo()
+        private static bool IsWinOnePoint(int onePoint, int otherPoint)
         {
-            return _secondPlayerPoint >= 4 && _firstPlayerPoint >= 0 && (_secondPlayerPoint - _firstPlayerPoint) >= 2;
+            return onePoint >= 4 && otherPoint >= 0 && onePoint - otherPoint >= 2;
         }
 
-        private bool IsFirstPointGreaterThanOrEqualToFourAndSecondPointGreaterThanOrEqualToZeroAndTheirDifferenceGreaterThanTwo()
-        {
-            return _firstPlayerPoint >= 4 && _secondPlayerPoint >= 0 && (_firstPlayerPoint - _secondPlayerPoint) >= 2;
-        }
-        
         private static bool IsAdvantageOnePointBeforeOther(int onePoint, int otherPoint)
         {
             return onePoint > otherPoint && otherPoint >= 3;
