@@ -31,8 +31,8 @@ namespace Tennis
 
             if ((_firstPlayerPoint > _secondPlayerPoint && _firstPlayerPoint < 4) ||
                 (_secondPlayerPoint > _firstPlayerPoint && _secondPlayerPoint < 4) ||
-                (_firstPlayerPoint > 0 && _secondPlayerPoint == 0) ||
-                (_secondPlayerPoint > 0 && _firstPlayerPoint == 0))
+                IsOnePointGreaterThanZeroAndOtherPointEqualsZero(_firstPlayerPoint, _secondPlayerPoint) ||
+                IsOnePointGreaterThanZeroAndOtherPointEqualsZero(_secondPlayerPoint, _firstPlayerPoint))
             {
                 return GetScorePart(_firstPlayerPoint) + "-" + GetScorePart(_secondPlayerPoint);
             }
@@ -47,6 +47,11 @@ namespace Tennis
                return "Advantage player2";
             }
             return "";
+        }
+
+        private static bool IsOnePointGreaterThanZeroAndOtherPointEqualsZero(int onePoint, int otherPoint)
+        {
+            return onePoint > 0 && otherPoint == 0;
         }
 
         private static string GetScorePart(int playerPoint)
