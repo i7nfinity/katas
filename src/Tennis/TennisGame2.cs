@@ -39,17 +39,17 @@ namespace Tennis
             if (IsFirstPointGreaterThanZeroAndSecondPointEqualsZero() ||
                 IsSecondPointGreaterThanZeroAndFirstPointEqualsZero())
             {
-                score = GetScorePart(_firstPlayerPoint) + "-" + GetScorePart(_secondPlayerPoint);
+                return GetScorePart(_firstPlayerPoint) + "-" + GetScorePart(_secondPlayerPoint);
             }
 
             if (IsSecondPointGreaterThanOrEqualToThreeAndLessThanFirstPoint())
             {
-                score = "Advantage player1";
+               return "Advantage player1";
             }
 
             if (IsFirstPointGreaterThanOrEqualToThreeAndLessThanSecondPoint())
             {
-                score = "Advantage player2";
+               return "Advantage player2";
             }
             return score;
         }
