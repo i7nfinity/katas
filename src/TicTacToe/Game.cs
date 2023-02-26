@@ -1,11 +1,16 @@
 ﻿namespace TicTacToe;
 
-//TODO: smell Data Class
+//TODO: smell Lazy Class
 public class Tile
 {
     public int X { get; set; }
     public int Y { get; set; }
     public char Symbol { get; set; }
+
+    public bool TileEqualsByCoordinates(int x, int y)
+    {
+        return X == x && Y == y;
+    }
 }
 
 //TODO: smell Lazy Class
@@ -30,7 +35,7 @@ public class Board
 
     public Tile TileAt(int x, int y)
     {
-        return _plays.Single(tile => tile.X == x && tile.Y == y);
+        return _plays.Single(tile => tile.TileEqualsByCoordinates(x, y));
     }
 
     //TODO: smell Duplicated Code
@@ -41,7 +46,7 @@ public class Board
     {
         var newTile = new Tile {X = x, Y = y, Symbol = symbol};
 
-        _plays.Single(tile => tile.X == x && tile.Y == y).Symbol = symbol;
+        _plays.Single(tile => tile.TileEqualsByCoordinates(x, y)).Symbol = symbol;
     }
 }
 
