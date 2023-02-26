@@ -18,6 +18,16 @@ public class Tile
     {
         return X == x && Y == y;
     }
+
+    public bool IsPlayed()
+    {
+        return Symbol != ' ';
+    }
+
+    public static bool IsSecondPlayer(char symbol)
+    {
+        return symbol == 'O';
+    }
 }
 
 //TODO: smell Lazy Class
@@ -75,7 +85,7 @@ public class Game
     {
         if (IsFirstMove())
         {
-            if (IsSecondPlayer(symbol))
+            if (Tile.IsSecondPlayer(symbol))
             {
                 throw new Exception("Invalid first player");
             }
@@ -100,17 +110,13 @@ public class Game
 
     private bool IsBusyPosition(int x, int y)
     {
-        return _board.TileAt(x, y).Symbol != ' ';
+        Tile tile = _board.TileAt(x, y);
+        return tile.IsPlayed();
     }
 
     private bool IsInvalidNextPlayer(char symbol)
     {
         return symbol == _lastSymbol;
-    }
-
-    private static bool IsSecondPlayer(char symbol)
-    {
-        return symbol == 'O';
     }
 
     private bool IsFirstMove()
