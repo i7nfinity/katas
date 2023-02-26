@@ -1,5 +1,6 @@
 ﻿namespace TicTacToe;
 
+//TODO: smell Data Class
 public class Tile
 {
     public int X { get; set; }
@@ -7,6 +8,11 @@ public class Tile
     public char Symbol { get; set; }
 }
 
+//TODO: smell Lazy Class
+//TODO: smell Feature Envy
+//TODO: smell Data Clumps
+//TODO: smell Shotgun Surgery
+//TODO: smell Primitive Obsession
 public class Board
 {
     private readonly List<Tile> _plays = new();
@@ -27,6 +33,10 @@ public class Board
         return _plays.Single(tile => tile.X == x && tile.Y == y);
     }
 
+    //TODO: smell Duplicated Code
+    //TODO: smell Message Chain
+    //TODO: smell Dead Code
+    //TODO: smell Long Parameter List
     public void AddTileAt(char symbol, int x, int y)
     {
         var newTile = new Tile {X = x, Y = y, Symbol = symbol};
@@ -35,11 +45,20 @@ public class Board
     }
 }
 
+//TODO: smell Large Class
+//TODO: smell Feature Envy
+//TODO: smell Data Clumps
+//TODO: smell Shotgun Surgery
+//TODO: smell Primitive Obsession
+//TODO: smell Comments
+//TODO: smell Message Chain
 public class Game
 {
     private readonly Board _board = new();
     private char _lastSymbol = ' ';
 
+    //TODO: smell Long Parameter List
+    //TODO: smell Long Method
     public void Play(char symbol, int x, int y)
     {
         //if first move
