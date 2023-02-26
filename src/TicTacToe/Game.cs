@@ -3,8 +3,15 @@
 //TODO: smell Lazy Class
 public class Tile
 {
-    public int X { get; set; }
-    public int Y { get; set; }
+    public Tile(int x, int y, char symbol)
+    {
+        X = x;
+        Y = y;
+        Symbol = symbol;
+    }
+
+    private int X { get; }
+    private int Y { get; }
     public char Symbol { get; set; }
 
     public bool TileEqualsByCoordinates(int x, int y)
@@ -28,7 +35,7 @@ public class Board
         {
             for (var j = 0; j < 3; j++)
             {
-                _plays.Add(new Tile {X = i, Y = j, Symbol = ' '});
+                _plays.Add(new Tile(x: i, y: j, symbol: ' '));
             }
         }
     }
@@ -44,7 +51,7 @@ public class Board
     //TODO: smell Long Parameter List
     public void AddTileAt(char symbol, int x, int y)
     {
-        var newTile = new Tile {X = x, Y = y, Symbol = symbol};
+        var newTile = new Tile(x: x, y: y, symbol: symbol);
 
         _plays.Single(tile => tile.TileEqualsByCoordinates(x, y)).Symbol = symbol;
     }
