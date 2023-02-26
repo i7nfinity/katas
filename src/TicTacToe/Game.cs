@@ -55,15 +55,10 @@ public class Board
         return _plays.Single(tile => tile.TileEqualsByCoordinates(x, y));
     }
 
-    //TODO: smell Duplicated Code
-    //TODO: smell Message Chain
-    //TODO: smell Dead Code
     //TODO: smell Long Parameter List
     public void AddTileAt(char symbol, int x, int y)
     {
-        var newTile = new Tile(x: x, y: y, symbol: symbol);
-
-        _plays.Single(tile => tile.TileEqualsByCoordinates(x, y)).Symbol = symbol;
+        TileAt(x, y).Symbol = symbol;
     }
 }
 
