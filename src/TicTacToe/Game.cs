@@ -80,26 +80,47 @@ public class Game
     private char _lastSymbol = ' ';
 
     //TODO: smell Long Parameter List
-    //TODO: smell Long Method
     public void Play(char symbol, int x, int y)
+    {
+        ValidateSymbolAndPosition(symbol, x, y);
+        UpdateGameState(symbol, x, y);
+    }
+
+    //TODO: smell Long Parameter List
+    private void ValidateSymbolAndPosition(char symbol, int x, int y)
     {
         if (IsFirstMove())
         {
-            if (Tile.IsSecondPlayer(symbol))
-            {
-                throw new Exception("Invalid first player");
-            }
+            ValidateFirstPlayerInStart(symbol);
+            return;
         }
-        else if (IsInvalidNextPlayer(symbol))
+
+        ValidatePlayersOrder(symbol);
+        ValidateBusyPosition(x, y);
+    }
+
+    private static void ValidateFirstPlayerInStart(char symbol)
+    {
+        if (Tile.IsSecondPlayer(symbol))
         {
-            throw new Exception("Invalid next player");
+            throw new Exception("Invalid first player");
         }
-        else if (IsBusyPosition(x, y))
+    }
+
+    private void ValidateBusyPosition(int x, int y)
+    {
+        if (IsBusyPosition(x, y))
         {
             throw new Exception("Invalid position");
         }
+    }
 
-        UpdateGameState(symbol, x, y);
+    private void ValidatePlayersOrder(char symbol)
+    {
+        if (IsInvalidNextPlayer(symbol))
+        {
+            throw new Exception("Invalid next player");
+        }
     }
 
     private void UpdateGameState(char symbol, int x, int y)
@@ -124,6 +145,7 @@ public class Game
         return _lastSymbol == ' ';
     }
 
+    //TODO: smell Long Method
     public char Winner()
     {
         //if the positions in first row are taken
