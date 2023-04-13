@@ -2,14 +2,13 @@ using System;
 
 namespace TDDMicroExercises.TirePressureMonitoringSystem;
 
-public class Sensor
+public class Sensor : ISensor
 {
     private const double Offset = 16;
 
     public double PopNextPressurePsiValue()
     {
-        double pressureTelemetryValue;
-        SamplePressure(out pressureTelemetryValue);
+        SamplePressure(out var pressureTelemetryValue);
 
         return Offset + pressureTelemetryValue;
     }

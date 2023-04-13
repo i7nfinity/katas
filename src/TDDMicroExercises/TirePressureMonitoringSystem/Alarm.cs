@@ -4,21 +4,30 @@ public class Alarm
 {
     private const double LowPressureThreshold = 17;
     private const double HighPressureThreshold = 21;
-    private long _alarmCount;
 
-    private readonly Sensor _sensor = new();
+    private readonly ISensor _sensor;
+
+    public Alarm()
+    {
+        _sensor = new Sensor();
+    }
+
+    public Alarm(ISensor sensor)
+    {
+        _sensor = sensor;
+    }
 
     public bool AlarmOn { get; private set; }
-
 
     public void Check()
     {
         var psiPressureValue = _sensor.PopNextPressurePsiValue();
 
-        if (psiPressureValue < LowPressureThreshold || HighPressureThreshold < psiPressureValue)
+        if (psiPressureValue is >= LowPressureThreshold and <= HighPressureThreshold)
         {
-            AlarmOn = true;
-            _alarmCount += 1;
+            return;
         }
+
+        AlarmOn = true;
     }
 }
