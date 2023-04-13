@@ -4,34 +4,37 @@ namespace TDDMicroExercises.UnicodeFileToHtmlTextConverter;
 
 public class UnicodeFileToHtmlTextConverter
 {
-    private readonly string _fullFilenameWithPath;
+    private readonly IFileReader _fileReader;
 
     public UnicodeFileToHtmlTextConverter(string fullFilenameWithPath)
     {
-        _fullFilenameWithPath = fullFilenameWithPath;
+        _fileReader = new FileReader(fullFilenameWithPath);
+    }
+
+    public UnicodeFileToHtmlTextConverter(IFileReader fileReader)
+    {
+        _fileReader = fileReader;
     }
 
     public string GetFilename()
     {
-        return _fullFilenameWithPath;
+        return _fileReader.GetFilename();
     }
 
     public string ConvertToHtml()
     {
-        using (TextReader unicodeFileStream = File.OpenText(_fullFilenameWithPath))
+        using TextReader unicodeFileStream = _fileReader.GetFileStream();
+        var html = string.Empty;
+
+        var line = unicodeFileStream.ReadLine();
+        while (line != null)
         {
-            var html = string.Empty;
-
-            var line = unicodeFileStream.ReadLine();
-            while (line != null)
-            {
-                html += HttpUtility.HtmlEncode(line);
-                html += "<br />";
-                line = unicodeFileStream.ReadLine();
-            }
-
-            return html;
+            html += HttpUtility.HtmlEncode(line);
+            html += "<br />";
+            line = unicodeFileStream.ReadLine();
         }
+
+        return html;
     }
 }
 
@@ -39,9 +42,9 @@ internal class HttpUtility
 {
     public static string HtmlEncode(string line)
     {
+        line = line.Replace("&", "&amp;");
         line = line.Replace("<", "&lt;");
         line = line.Replace(">", "&gt;");
-        line = line.Replace("&", "&amp;");
         line = line.Replace("\"", "&quot;");
         line = line.Replace("\'", "&quot;");
         return line;
