@@ -1,4 +1,6 @@
-namespace TDDMicroExercises.LeaderBoard.Tests;
+using TDDMicroExercises.LeaderBoard;
+
+namespace TDDMicroExercises.Leaderboard;
 
 public class TestData
 {
@@ -12,8 +14,8 @@ public class TestData
     public static Race Race4;
     public static Race Race5;
     public static Race Race6;
-    public static Leaderboard SampleLeaderboard1;
-    public static Leaderboard SampleLeaderboard2;
+    public static LeaderBoard.Leaderboard SampleLeaderboard1;
+    public static LeaderBoard.Leaderboard SampleLeaderboard2;
 
     static TestData()
     {
@@ -30,7 +32,7 @@ public class TestData
         Driver4.AlgorithmVersion = "1.3";
         Race6 = new Race("Fictional Grand Prix 3", Driver2, Driver1, Driver4);
 
-        SampleLeaderboard1 = new Leaderboard(Race1, Race2, Race3);
-        SampleLeaderboard2 = new Leaderboard(Race4, Race5, Race6);
+        SampleLeaderboard1 = new LeaderBoard.Leaderboard(Race1, Race2, Race3);
+        SampleLeaderboard2 = new LeaderBoard.Leaderboard(Race4, Race5, Race6);
     }
 }

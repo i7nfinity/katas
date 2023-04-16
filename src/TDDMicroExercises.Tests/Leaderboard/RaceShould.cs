@@ -1,9 +1,9 @@
-namespace TDDMicroExercises.LeaderBoard.Tests;
+namespace TDDMicroExercises.Leaderboard;
 
-public class RaceTest
+public class RaceShould
 {
     [Fact]
-    public void ShouldCalculateDriverPoints()
+    public void CalculateDriverPoints()
     {
         Assert.Equal(25, TestData.Race1.GetPoints(TestData.Driver1));
         Assert.Equal(18, TestData.Race1.GetPoints(TestData.Driver2));

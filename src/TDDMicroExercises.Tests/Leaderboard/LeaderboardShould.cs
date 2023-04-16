@@ -1,9 +1,11 @@
-namespace TDDMicroExercises.LeaderBoard.Tests;
+using TDDMicroExercises.LeaderBoard;
 
-public class LeaderboardTest
+namespace TDDMicroExercises.Leaderboard;
+
+public class LeaderboardShould
 {
     [Fact]
-    public void ShouldSumThePoints()
+    public void SumThePoints()
     {
         Dictionary<string, int>? results = TestData.SampleLeaderboard1.DriverResults();
         Assert.True(results.ContainsKey("Lewis Hamilton"));
@@ -11,17 +13,17 @@ public class LeaderboardTest
     }
 
     [Fact]
-    public void ShouldFindTheWinner()
+    public void FindTheWinner()
     {
         Assert.Equal("Lewis Hamilton", TestData.SampleLeaderboard1.DriverRankings()[0]);
     }
 
     [Fact]
-    public void ShouldKeepAllDriversWhenSamePoints()
+    public void KeepAllDriversWhenSamePoints()
     {
         var winDriver1 = new Race("Australian Grand Prix", TestData.Driver1, TestData.Driver2, TestData.Driver3);
         var winDriver2 = new Race("Malaysian Grand Prix", TestData.Driver2, TestData.Driver1, TestData.Driver3);
-        var exEquoLeaderBoard = new Leaderboard(winDriver1, winDriver2);
+        var exEquoLeaderBoard = new LeaderBoard.Leaderboard(winDriver1, winDriver2);
 
         List<string>? rankings = exEquoLeaderBoard.DriverRankings();
 
