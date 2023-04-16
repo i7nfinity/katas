@@ -2,31 +2,27 @@ using System;
 
 namespace TDDMicroExercises.TelemetrySystem;
 
-public class TelemetryClient
+public interface ITelemetryClient
+{
+    void Send(string message);
+    string Receive();
+}
+
+public class TelemetryClient : ITelemetryClient
 {
     public const string DiagnosticMessage = "AT#UD";
+    private readonly IEventSimulator _eventSimulator;
 
-    private readonly Random _connectionEventsSimulator = new(42);
     private string _diagnosticMessageResult = string.Empty;
 
-    public bool OnlineStatus { get; private set; }
-
-    public void Connect(string telemetryServerConnectionString)
+    public TelemetryClient()
     {
-        if (string.IsNullOrEmpty(telemetryServerConnectionString))
-        {
-            throw new ArgumentNullException();
-        }
-
-        // simulate the operation on a real modem
-        var success = _connectionEventsSimulator.Next(1, 10) <= 8;
-
-        OnlineStatus = success;
+        _eventSimulator = new EventSimulator();
     }
 
-    public void Disconnect()
+    public TelemetryClient(IEventSimulator eventSimulator)
     {
-        OnlineStatus = false;
+        _eventSimulator = eventSimulator;
     }
 
     public void Send(string message)
@@ -72,10 +68,10 @@ public class TelemetryClient
         {
             // simulate a received message
             message = string.Empty;
-            var messageLenght = _connectionEventsSimulator.Next(50, 110);
-            for (var i = messageLenght; i >= 0; --i)
+            var messageLength = _eventSimulator.SimulateMessageLength();
+            for (var i = messageLength; i >= 0; --i)
             {
-                message += (char)_connectionEventsSimulator.Next(40, 126);
+                message += _eventSimulator.SimulateMessageSymbol();
             }
         }
 
